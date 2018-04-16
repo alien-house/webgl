@@ -1,0 +1,29 @@
+<html>
+	<head>
+        <title>WebGL TEST</title>
+        <script src="script.js" type="text/javascript"></script>
+        <script src="minMatrix.js" type="text/javascript"></script>
+        
+
+        <script id="vs" type="x-shader/x-vertex">
+        //頂点シェーダ
+			attribute vec3 position; //頂点の位置情報：ベクトルの各要素には X ・ Y ・ Z のそれぞれの座標
+			uniform   mat4 mvpMatrix; //mat4なので 4 x 4 の正方行列
+
+			void main(void){
+				//今回は、座標変換行列を用いて頂点の座標位置を変換するだけですので、双方を掛け合わせます。
+			    gl_Position = mvpMatrix * vec4(position, 1.0);
+			}
+        </script>
+        
+        <script id="fs" type="x-shader/x-fragment">
+			void main(void){
+				 //gl_FragColor に白の色情報を与えることだけ。色に関してはvec3かvec4
+			    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+			}
+        </script>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+    </body>
+</html>
